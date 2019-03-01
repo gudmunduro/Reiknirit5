@@ -1,3 +1,4 @@
+import Foundation
 
 // Functions
 
@@ -34,6 +35,23 @@ public func ask(_ message: String = "") -> Bool
             continue
         }
     }
+}
+
+// Function overloads
+
+public func sqrt(_ value: Int) -> Int
+{
+    return Int(sqrt(Double(value)))
+}
+
+public func acos(_ value: Int) -> Int
+{
+    return Int(acos(Double(value)))
+}
+
+public func pow(_ value: Int, _ power: Int) -> Int 
+{
+    return Int(pow(Double(value), Double(power)))
 }
 
 // Classes
@@ -84,7 +102,7 @@ public class Menu {
 
 extension Int {
 
-    static postfix func ++(lhs: inout Int) -> Int {
+    static postfix func ++ (lhs: inout Int) -> Int {
         lhs += 1
         return lhs
     }
@@ -107,15 +125,14 @@ extension String {
 
 extension Array {
 
-    mutating func swap(_ ind1: Int, _ ind2: Int){
+    mutating func swap(_ ind1: Int, _ ind2: Int) {
         var temp: Element
         temp = self[ind1]
         self[ind1] = self[ind2]
         self[ind2] = temp
     }
 
-    func printAll()
-    {
+    func printAll() {
         for element in self {
             print(element)
         }

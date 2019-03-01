@@ -5,13 +5,11 @@ class Node {
     var nxt: Node? = nil
     var prv: Node? = nil
 
-    init(d: Int)
-    {
+    init(d: Int) {
         self.data = d
     }
 
-    func append(d: Int) -> Bool
-    {
+    func append(d: Int) -> Bool {
         if let nxt = self.nxt {
             return nxt.append(d: d)
         } else {
@@ -22,16 +20,14 @@ class Node {
         }
     }
 
-    func printList()
-    {
+    func printList() {
         print(data, terminator: " ")
         if let nxt = self.nxt {
             nxt.printList()
         }
     }
 
-    func find(d: Int) -> Bool
-    {
+    func find(d: Int) -> Bool {
         if d != self.data {
             guard let nxt = self.nxt else {
                 return false
@@ -42,8 +38,7 @@ class Node {
         }
     }
 
-    func delete(d: Int) -> Bool
-    {
+    func delete(d: Int) -> Bool {
         if d != self.data {
             guard let nxt = self.nxt else {
                 return false
@@ -64,8 +59,7 @@ class DLL {
 
     var head: Node? = nil
 
-    func push(d: Int) 
-    {
+    func push(d: Int)  {
         var curr = Node(d: d)
         if var head = self.head {
             curr.nxt = head
@@ -74,8 +68,7 @@ class DLL {
         self.head = curr
     }
 
-    func append(d: Int) -> Bool
-    {
+    func append(d: Int) -> Bool {
         if var head = self.head {
             return head.append(d: d)
         } else {
@@ -84,8 +77,7 @@ class DLL {
         }
     }
 
-    func printList() 
-    {
+    func printList() {
         guard let head = self.head else {
             print("List empty")
             return
@@ -94,8 +86,7 @@ class DLL {
         print()
     }
 
-    func find(d: Int) -> Bool
-    {
+    func find(d: Int) -> Bool {
         if let head = self.head {
             return head.find(d: d)
         } else {
@@ -103,8 +94,7 @@ class DLL {
         }
     }
 
-    func delete(d: Int) -> Bool
-    {
+    func delete(d: Int) -> Bool {
         if let head = self.head {
             return head.delete(d: d)
         } else {
@@ -112,12 +102,9 @@ class DLL {
         }
     }
 
-    
 }
 
-
-func runPart1()
-{
+func runPart1() {
     let dbl = DLL()
     dbl.append(d: 5)           // 5
     dbl.append(d: 7)           // 5 7         

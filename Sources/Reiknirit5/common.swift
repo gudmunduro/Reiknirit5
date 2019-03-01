@@ -75,7 +75,7 @@ public class Menu {
     func show()
     {
         print(title)
-        for i in 0...options.count - 1 {
+        for i in 0..<options.count {
             print("\(i + 1)) \(options[i].text)")
         }
         while true {
@@ -126,8 +126,7 @@ extension String {
 extension Array {
 
     mutating func swap(_ ind1: Int, _ ind2: Int) {
-        var temp: Element
-        temp = self[ind1]
+        let temp = self[ind1]
         self[ind1] = self[ind2]
         self[ind2] = temp
     }

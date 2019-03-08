@@ -37,6 +37,37 @@ public func ask(_ message: String = "") -> Bool
     }
 }
 
+func deg(_ value: Double) -> Double
+{
+    return value * 180 / Double.pi
+}
+
+func deg(_ value: Float) -> Float
+{
+    return value * 180 / Float.pi
+}
+
+enum GraphPosition {
+    case PP
+    case NP
+    case NN
+    case PN
+
+    static func find(x: Double, y: Double) -> GraphPosition
+    {
+        if x >= 0 && y > 0 {
+            return .PP
+        } else if x < 0 && y > 0 {
+            return .NP
+        } else if x < 0 && y <= 0 {
+            return .NN
+        } else if x >= 0 && y <= 0 {
+            return .PN
+        }
+        return .PP
+    }
+}
+
 // Function overloads
 
 public func sqrt(_ value: Int) -> Int
@@ -106,6 +137,14 @@ extension Int {
         lhs += 1
         return lhs
     }
+}
+
+extension Double {
+
+    func rounded(decimals: Int) -> Double {
+        return (self * pow(10.0, Double(decimals))).rounded() / pow(10.0, Double(decimals))
+    }
+
 }
 
 extension String {

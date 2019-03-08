@@ -6,7 +6,7 @@ class Vigur {
     let y: Double
 
     var lengd: Double {
-        return sqrt(pow(x, 2)+pow(y, 2))
+        return sqrt(pow(x, 2)+pow(y, 2)).rounded(decimals: 2)
     }
 
     var halli: Double {
@@ -18,7 +18,17 @@ class Vigur {
     }
 
     var stefnuhorn: Double {
-        return horn(v: þvervigur)
+        var result = deg(atan(abs(y)/abs(x))).rounded(decimals: 2)
+
+        switch GraphPosition.find(x: x, y: y) {
+            case .PP: break
+            case .NP: result += 90
+            case .NN: result += 180
+            case .PN: result -= 90
+            default: break
+        }
+
+        return result
     }
 
     init(x: Double, y: Double) {
@@ -35,7 +45,7 @@ class Vigur {
     }
 
     func horn(v: Vigur) -> Double {
-        return acos( ((x*v.x) + (y*v.y)) / (sqrt( pow(x, 2) * pow(y, 2) ) * sqrt( pow(x, 2) * pow(y, 2) )) )
+        return deg(acos(((x*v.x) + (y*v.y)) / (sqrt( abs(pow(x, 2) * pow(y, 2) )) * sqrt( abs( pow(v.x, 2) * pow(v.y, 2))) )))
     }
    
 }
@@ -54,4 +64,7 @@ func runPart2() {
     let v3 = v1.summa(v: v2)
     print("Summa: ", terminator: "")
     v3.prenta()
+
+    let v = Vigur(x: -1.0, y: 0.0)
+    print(v.stefnuhorn)
 }

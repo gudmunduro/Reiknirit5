@@ -5,6 +5,11 @@ class Vigur {
     let x: Double
     let y: Double
 
+    init(x: Double, y: Double) {
+        self.x = x
+        self.y = y
+    }
+
     var lengd: Double {
         return sqrt(pow(x, 2)+pow(y, 2)).rounded(decimals: 2)
     }
@@ -31,11 +36,6 @@ class Vigur {
         return result
     }
 
-    init(x: Double, y: Double) {
-        self.x = x
-        self.y = y
-    }
-
     func prenta() {
         print("X: \(x), Y: \(y)")
     }
@@ -45,13 +45,13 @@ class Vigur {
     }
 
     func horn(v: Vigur) -> Double {
-        return deg(acos(((x*v.x) + (y*v.y)) / (sqrt( abs(pow(x, 2) * pow(y, 2) )) * sqrt( abs( pow(v.x, 2) * pow(v.y, 2))) )))
+        return deg(acos(((x*v.x) + (y*v.y)) / (lengd * v.lengd)))
     }
    
 }
 
 func runPart2() {
-    let v1 = Vigur(x: 1.0, y: 3.0)
+    let v1 = Vigur(x: 4.0, y: 4.0)
     v1.prenta()
     print("Lengd: \(v1.lengd)")
     print("Halli: \(v1.halli)")
@@ -59,12 +59,9 @@ func runPart2() {
     print("Þvervigur: ", terminator: "")
     vþ.prenta()
     print("Stefnuhorn: \(v1.stefnuhorn)")
-    let v2 = Vigur(x: -3, y: 1)
+    let v2 = Vigur(x: 1.0, y: 0.0)
     print("Horn milli vigranna: \(v2.horn(v: v1))")
     let v3 = v1.summa(v: v2)
     print("Summa: ", terminator: "")
     v3.prenta()
-
-    let v = Vigur(x: -1.0, y: 0.0)
-    print(v.stefnuhorn)
 }

@@ -45,7 +45,9 @@ class Node {
             }
             return nxt.delete(d: d)
         } else {
-            prv!.nxt = nxt
+            if let prv = self.prv {
+                prv.nxt = nxt
+            }
             if let nxt = self.nxt {
                 nxt.prv = prv
             }
@@ -95,7 +97,13 @@ class DLL {
     }
 
     func delete(d: Int) -> Bool {
-        if let head = self.head {
+        if var head = self.head {
+            if head.data == d {
+                if let nxt = head.nxt {
+                    self.head = nxt
+                }
+            }
+
             return head.delete(d: d)
         } else {
             return false
@@ -106,6 +114,15 @@ class DLL {
 
 func runPart1() {
     let dbl = DLL()
+    dbl.append(d: 3)
+    dbl.push(d: 5)
+    dbl.append(d: 7)
+    dbl.append(d: 15)
+    print(dbl.find(d: 30))
+    dbl.printList()
+    dbl.delete(d: 7)
+    dbl.printList()
+    /*
     dbl.append(d: 5)           // 5
     dbl.append(d: 7)           // 5 7         
     dbl.push(d: 1)             // 1 5 7 
@@ -117,4 +134,5 @@ func runPart1() {
     dbl.printList() 
     print(dbl.find(d: 5))      // True
     print(dbl.find(d: 10))     // False
+    */
 }
